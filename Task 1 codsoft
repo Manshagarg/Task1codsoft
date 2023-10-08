@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    
+    srand(static_cast<unsigned>(time(nullptr)));
+
+    
+    int MYpcsecret = rand() % 100 + 1;
+
+    
+    int userGuess;
+    int attempts = 0;
+    int maxAttempts = 10; 
+    int score = 100;      
+
+    cout << "Welcome to the Guess the Number game!" << endl;
+    cout << "I've selected a random number between 1 and 100." << endl;
+    cout << "Try to guess it in " << maxAttempts << " attempts or fewer." << endl;
+    cout << "Your score starts at 100." << endl;
+
+    while (attempts < maxAttempts) {
+        cout << "Attempts left: " << maxAttempts - attempts << endl;
+        cout << "Enter your guess: ";
+        cin >> userGuess;
+        attempts++;
+
+        if (userGuess == MYpcsecret) {
+            cout << "Congratulations! You've guessed the correct number "
+                 << secretNumber << " in " << attempts << " attempts." << endl;
+            cout << "Your score is: " << score << endl;
+            break;
+        } else if (userGuess < MYpcsecret) {
+            cout << "Too low. Try again." << endl;
+            score -= 10; 
+        } else {
+            cout << "Too high. Try again." << endl;
+            score -= 10; 
+        }
+    }
+
+
+    if (attempts == maxAttempts) {
+        cout << "Out of attempts! The secret number was " << MYpcsecret << "." << endl;
+        cout << "Your final score is: " << score << endl;
+    }
+
+    return 0;
+}
+
+
